@@ -3,19 +3,21 @@ package http
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/alireza-fa/phone-book/internal/repository"
 	"github.com/alireza-fa/phone-book/pkg/token"
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/zap"
 )
 
 type Server struct {
-	logger *zap.Logger
-	token  token.Token
-	app    *fiber.App
+	logger     *zap.Logger
+	token      token.Token
+	repository repository.Repository
+	app        *fiber.App
 }
 
-func New(lg *zap.Logger, token token.Token) *Server {
-	s := &Server{logger: lg, token: token}
+func New(lg *zap.Logger, token token.Token, repo repository.Repository) *Server {
+	s := &Server{logger: lg, token: token, repository: repo}
 
 	s.app = fiber.New(fiber.Config{JSONEncoder: json.Marshal, JSONDecoder: json.Unmarshal})
 
