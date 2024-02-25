@@ -10,6 +10,7 @@ require (
 	github.com/lib/pq v1.10.9
 	github.com/spf13/cobra v1.8.0
 	go.uber.org/zap v1.27.0
+	golang.org/x/exp v0.0.0-20240222234643-814bf88cf225
 )
 
 require (
