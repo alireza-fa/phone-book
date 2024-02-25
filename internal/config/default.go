@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/alireza-fa/phone-book/pkg/logger"
+	"github.com/alireza-fa/phone-book/pkg/rdbms"
 	"github.com/alireza-fa/phone-book/pkg/token"
 	"time"
 )
@@ -12,6 +13,13 @@ func Default() *Config {
 			Development: true,
 			Level:       "debug",
 			Encoding:    "console",
+		},
+		RDBMS: &rdbms.Config{
+			Host:     "localhost",
+			Port:     5433,
+			Username: "PHONEBOOK_USER",
+			Password: "PHONEBOOK_PASSWORD",
+			Database: "PHONEBOOK_DB",
 		},
 		Token: &token.Config{
 			PublicPem:  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAJiIlevPkjU0KhKAc2TO78tQ42kjUocxpgjEI3wp+WTY=\n-----END PUBLIC KEY-----",
