@@ -13,6 +13,10 @@ import (
 
 type Repository interface {
 	Migrate(migrate models.Migrate) error
+
+	GetUserByEmail(email string) (*models.User, error)
+	CreateUser(user *models.User) error
+	GetUserByEmailAndPassword(email, password string) (*models.User, error)
 }
 
 type repository struct {
