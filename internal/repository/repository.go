@@ -17,6 +17,12 @@ type Repository interface {
 	GetUserByEmail(email string) (*models.User, error)
 	CreateUser(user *models.User) error
 	GetUserByEmailAndPassword(email, password string) (*models.User, error)
+
+	CreateContact(userId uint64, contact *models.Contact) error
+	GetContactById(userId uint64, contactId uint64) (*models.Contact, error)
+	UpdateContact(userId uint64, contact *models.Contact) error
+	DeleteContact(userId uint64, contactId uint64) error
+	GetContacts(userId uint64, encryptedCursor, search string, limit int) ([]models.Contact, string, error)
 }
 
 type repository struct {
