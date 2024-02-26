@@ -28,7 +28,11 @@ func New(lg *zap.Logger, token token.Token, repo repository.Repository) *Server 
 	auth.Post("/login", s.login)
 
 	contacts := v1.Group("contacts", s.fetchUserId)
-	contacts.Get("/", s.needsAuthentication)
+	contacts.Get("/", s.getContacts)
+	contacts.Post("/", s.createContact)
+	contacts.Get("/:id", s.getContact)
+	contacts.Put("/:id", s.updateContact)
+	contacts.Delete("/:id", s.deleteContact)
 
 	return s
 }
