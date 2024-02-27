@@ -30,7 +30,7 @@ FROM contacts
 WHERE user_id=$1 AND id=$2;`
 
 func (r *repository) GetContactById(userId uint64, contactId uint64) (*models.Contact, error) {
-	contact := models.Contact{}
+	contact := models.Contact{Id: contactId}
 	in := []interface{}{userId, contactId}
 	out := []interface{}{&contact.Name, pq.Array(&contact.Phones), &contact.Description}
 	if err := r.rdbms.QueryRow(QueryGetContactById, in, out); err != nil {

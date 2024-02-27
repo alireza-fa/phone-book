@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/alireza-fa/phone-book/internal/repository"
 	"github.com/alireza-fa/phone-book/pkg/logger"
 	"github.com/alireza-fa/phone-book/pkg/rdbms"
 	"github.com/alireza-fa/phone-book/pkg/token"
@@ -20,6 +21,13 @@ func Default() *Config {
 			Username: "PHONEBOOK_USER",
 			Password: "PHONEBOOK_PASSWORD",
 			Database: "PHONEBOOK_DB",
+		},
+		Repository: &repository.Config{
+			CursorSecret: "A?D(G-KapdSgVVVG",
+			Limit: struct {
+				Min int "koanf:\"min\""
+				Max int "koanf:\"max\""
+			}{12, 48},
 		},
 		Token: &token.Config{
 			PublicPem:  "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAJiIlevPkjU0KhKAc2TO78tQ42kjUocxpgjEI3wp+WTY=\n-----END PUBLIC KEY-----",
