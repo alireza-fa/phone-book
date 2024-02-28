@@ -14,7 +14,7 @@ COPY . .
 RUN go build -o /entrypoint
 
 # -------------------------------------------------- Runtime
-FROM apline:latest AS runtime
+FROM alpine:latest AS runtime
 
 LABEL maintainer="alireza feizi <alirezafeyze44@gmail.com>"
 
