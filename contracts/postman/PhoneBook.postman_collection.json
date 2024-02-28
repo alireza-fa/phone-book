@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "7c887aa9-f2dd-4463-aa89-af8665f44604",
+		"name": "PhoneBook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19364116"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response",
+									"",
+									"if (response.code == 200 || response.code == 201) {",
+									"    pm.environment.set('token', response.json().Token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"example2@gmail.com\",\n    \"password\": \"password2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response;",
+									"",
+									"if (response.code == 200 || response.code == 201) {",
+									"    pm.environment.set('token', response.json().Token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"example1@gmail.com\",\n    \"password\": \"password1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "contacts",
+			"item": [
+				{
+					"name": "get contacts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/contacts/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contacts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ontact 1 for user 2\",\n    \"phones\": [\n        \"0989309806565\",\n        \"+989309806566\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/contacts/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contacts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get contact",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/contacts/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contacts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update contact",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"update contact 1 for user 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/contacts/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contacts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete contact",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/contacts/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contacts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
